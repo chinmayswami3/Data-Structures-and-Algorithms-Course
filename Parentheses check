@@ -1,0 +1,77 @@
+#include<iostream>
+#include<string>
+using namespace std;
+using std::string;
+
+int main()
+{
+	int i,ind=0;
+	string s;
+	char stack[100];
+	bool res;
+	cin>>s;
+	char c;
+	for(i=0;i<s.length();i++)
+	{
+		c=s[i];
+		if(c=='('||c=='{'||c=='[')
+		{
+			stack[ind]=c;
+			ind++;
+		}
+		else if(c==')')
+		{
+			if(stack[ind-1]=='(')
+			{
+				ind--;
+				stack[ind]=0;
+				continue;
+			}
+			else
+			{
+				stack[ind]=c;
+				ind++;
+				continue;	
+			}
+		}
+		else if(c=='}')
+		{
+			if(stack[ind-1]=='{')
+			{
+				ind--;
+				stack[ind]=0;
+				continue;
+			}
+			else
+			{
+				stack[ind]=c;
+				ind++;
+				continue;	
+			}
+		}
+		else if(c==']')
+		{
+			if(stack[ind-1]=='[')
+			{
+				ind--;
+				stack[ind]=0;
+				continue;
+			}
+			else
+			{
+				stack[ind]=c;
+				ind++;
+				continue;
+			}
+		}
+	}
+	if(ind==0)
+		{
+			cout<<"Valid";
+		}
+		else
+		{
+			cout<<"Invalid";
+		}
+	return 0;
+}
